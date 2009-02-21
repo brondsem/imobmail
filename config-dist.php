@@ -93,4 +93,10 @@ $SMTP_PASSWORD = "meinpasswort";				// Passwort des SMTP-Servers
 $SMTP_SENDERNAME = "Hans Mustermann";			// Ihr Name
 $SMTP_SENDERADDRESS = "john@doe.foe";			// Ihre eMail-Adresse (Absender)
 
+
+/*
+    Force a language.  If not set, it checks the browser settings and uses the language requested.
+    Defaults to 'de'
+*/
+// $LANG = 'en'
 ?>

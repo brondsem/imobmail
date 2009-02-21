@@ -38,7 +38,7 @@ if ($nr<=2) {
 
 ?>
 
- <ul id="accounts" title="Accounts">
+ <ul id="accounts" title="<?php echo l('Accounts')?>">
 
 <?php
 $accnr = 1;

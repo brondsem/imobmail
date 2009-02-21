@@ -18,6 +18,7 @@
 
 session_start();
 include('config.php');
+include_once('lang.php');
 
 if ($_SESSION['user'] == $USERNAME && $_SESSION['passwd'] == md5($PASSWORD)) {
 }  else  {

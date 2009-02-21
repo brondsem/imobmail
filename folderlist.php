@@ -36,7 +36,7 @@ $loadprev = isset($_GET["prev"]);
 $fname = imap_utf7_decode($imapfolder);
 $fname = preg_replace("/INBOX/","",$fname);
 $fname = preg_replace("/\//","",$fname,1);
-if ($fname == "") $fname = "Posteingang";
+if ($fname == "") $fname = l("Posteingang");
 
 if ($offset == 0) {
 	echo " <ul id=\"folderlist\" title=\"".$fname."\"> ";
@@ -87,7 +87,7 @@ $end = $nummsg-25;
 
 if ($start+1 != $MC->Nmsgs && $loadprev) {
 
-	echo "<li id=\"prevLoader\"><a href=\"folderlist.php?prev&acc=".$accnr."&folder=".$imapfolder."&offset=".($start+52)."\" target=\"_replace\">25 vorige Nachrichten laden...</a></li>";
+	echo "<li id=\"prevLoader\"><a href=\"folderlist.php?prev&acc=".$accnr."&folder=".$imapfolder."&offset=".($start+52)."\" target=\"_replace\">". l('25 vorige Nachrichten laden...') . "</a></li>";
 
 }
 $showdeleted = $_COOKIE['tmailprefshowdel'];
@@ -184,7 +184,7 @@ foreach(array_reverse($msgsh) as $headrs) {
 	if ($msize > 1024) { $msize = round($msize / 1024,1) . " MB"; } else  { $msize = round($msize,1) . " kB"; }
 
 	$datestr = date("d.m.y",strtotime($mail_senddate));
-	setlocale (LC_TIME, 'de_DE');
+	setlocale (LC_TIME, $LANG);
 	if (date("z")-date("z",strtotime($mail_senddate)) < 6) $datestr = strftime("%a %H:%M",strtotime($mail_senddate));
 	if (date("d.m.y") == date("d.m.y",strtotime($mail_senddate))) $datestr = date("H:i",strtotime($mail_senddate));
 
@@ -212,12 +212,12 @@ if (($end-25)>0 && !$loadprev)
 echo $imapfolder."&offset=".$start;
 
 ?>
-" target="_replace" type="listupdate">25 weitere Nachrichten laden...</a></li>
+" target="_replace" type="listupdate"><?php echo l('25 weitere Nachrichten laden...')?></a></li>
 			 
 			 <?php
 }
 ?>
-<a class="button" id="delmark" href="#"  target="_replaceother" style="position:fixed;right:5px;">Edit</a>
+<a class="button" id="delmark" href="#"  target="_replaceother" style="position:fixed;right:5px;"><?php echo l('Edit')?></a>
 <?php
 
 if ($offset == 0) { echo "</ul>"; }

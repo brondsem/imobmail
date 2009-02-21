@@ -19,7 +19,7 @@
 
 include('sessioncheck.php');
 ?>
-    <ul id="folders" title="Ordner">
+    <ul id="folders" title="<?php echo l('Ordner')?>">
 <?php
 
 include('config.php');
@@ -55,7 +55,7 @@ if (is_array($list)) {
 			$colorstr = "color:#194fdb;font-weight:bold;";
 		}
 
-		if ($utdec == "") $utdec = "Posteingang";
+		if ($utdec == "") $utdec = l("Posteingang");
 
 		$mboxname = substr($val,strpos($val,'}')+1,strlen($val));
 
@@ -75,7 +75,7 @@ if (is_array($list)) {
 
 	}
 } else {
-	echo "<li ><a href=\"folderlist.php?acc=".$accnr."&folder=INBOX&offset=0\" style=\"padding-left:25px;\">Posteingang</a></li>";
+	echo "<li ><a href=\"folderlist.php?acc=".$accnr."&folder=INBOX&offset=0\" style=\"padding-left:25px;\">".l('Posteingang')."</a></li>";
 }
 
 imap_close($mbox);

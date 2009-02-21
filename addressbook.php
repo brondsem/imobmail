@@ -59,7 +59,7 @@ if (isset($_GET['showdet'])) {
 
 	echo <<<END
 
-    <div id="adddetail" title="Details" class="panel">
+    <div id="adddetail" title="{$l('Details')}" class="panel">
         
         <h2 style="padding-top:40px;padding-bottom:40px;padding-left:90px;">$first_name $sur_name<br/>$orgname</h2><div  style="position:absolute;top:20px;left:10px;border: 1px solid black;background:#ffffff;-webkit-border-radius:6px;height:75px;width:75px;" valign="absmiddle" align="center"><img src="$imgurl" style="padding-top:2px;left:2px;" heigth=70 width=70></div>
 END;
@@ -69,7 +69,7 @@ END;
 	if (count($mailarr)>0) {
 
 		echo <<<END
-	 <h2>eMail</h2>
+	 <h2>{$l('eMail')}</h2>
 	 <fieldset>
 END;
 
@@ -77,8 +77,8 @@ END;
 
 			$mailtype = $mailinfo[param][TYPE][1];
 
-			if ($mailtype == "WORK") $mailtype = "Arbeit";
-			if ($mailtype == "HOME") $mailtype = "Privat";
+			if ($mailtype == "WORK") $mailtype = l("Arbeit");
+			if ($mailtype == "HOME") $mailtype = l("Privat");
 
 			$mailadd = $mailinfo[value][0][0];
 
@@ -111,7 +111,7 @@ if (count($homepagekeyarr)>0) {
 
 
 	echo <<<END
-	 <h2>Internet</h2>
+	 <h2>{$l('Internet')}</h2>
 	 <fieldset>
 END;
 	foreach ($homepagekeyarr as $homepagekey) {
@@ -128,7 +128,7 @@ END;
 
 				echo <<<END
 	<div class="row">
-		<label>URL</label>
+		<label>{$l('URL')}</label>
 		<div class="addr" valign="middle"><a href="$url" target="_blank">$url</a></div>
 	</div>
 END;
@@ -151,7 +151,7 @@ $telarr = $cardinfo[$cardno][TEL];
 if (count($telarr)>0) {
 
 	echo <<<END
-	 <h2>Telefon</h2>
+	 <h2>{$l('Telefon')}</h2>
 	 <fieldset>
 END;
 
@@ -159,9 +159,9 @@ END;
 
 		$teltype = $telinfo[param][TYPE][0];
 
-		if ($teltype == "WORK") $teltype = "Arbeit";
-		if ($teltype == "HOME") $teltype = "Privat";
-		if ($teltype == "CELL") $teltype = "Mobil";
+		if ($teltype == "WORK") $teltype = l("Arbeit");
+		if ($teltype == "HOME") $teltype = l("Privat");
+		if ($teltype == "CELL") $teltype = l("Mobil");
 
 		$telnr = htmlentities($telinfo[value][0][0]);
 
@@ -194,7 +194,7 @@ if (count($addresskeyarr)>0) {
 
 
 	echo <<<END
-	 <h2>Adresse</h2>
+	 <h2>{$l('Adresse')}</h2>
 	 <fieldset>
 END;
 	foreach ($addresskeyarr as $addresskey) {
@@ -207,8 +207,8 @@ END;
 
 
 				$addtype = $adress[param][TYPE][0];
-				if ($addtype == "WORK") $addtype = "Arbeit";
-				if ($addtype == "HOME") $addtype = "Privat";
+				if ($addtype == "WORK") $addtype = l("Arbeit");
+				if ($addtype == "HOME") $addtype = l("Privat");
 
 				$add = explode(";",$adress[value][0][0]);
 				$street = htmlentities($add[2]);
@@ -238,7 +238,7 @@ exit;
 }
 
 echo <<<END
-    <ul id="addresslist" title="Adressen">
+    <ul id="addresslist" title="{$l('Adressen')}">
 END;
 
 

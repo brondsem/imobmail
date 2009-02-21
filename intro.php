@@ -32,14 +32,14 @@ include('sessioncheck.php');
     <div class="toolbar">
        <h1 id="pageTitle" name="pageTitle"></h1>
         <a id="backButton" class="button" href="#"></a>
-       <a class="button" id="rb" href="logout.php" target="_top">Logout</a><div id="msgnav"></div></div>
+       <a class="button" id="rb" href="logout.php" target="_top"><?php echo l('Logout')?></a><div id="msgnav"></div></div>
     </div>
     
     <ul id="home" title="Mail" selected="true">
-        <li><a href="accounts.php">Nachrichten abrufen</a></li>
-        <li id = "sendbut" ><a href="#sendmail">Nachricht verfassen</a></li>
-        <li id = "addbut" ><a href="addressbook.php">Adressbuch</a></li>
-        <li><a href="#settings">Einstellungen</a></li>
+        <li><a href="accounts.php"><?php echo l('Nachrichten abrufen')?></a></li>
+        <li id = "sendbut" ><a href="#sendmail"><?php echo l('Nachricht verfassen')?></a></li>
+        <li id = "addbut" ><a href="addressbook.php"><?php echo l('Adressbuch')?></a></li>
+        <li><a href="#settings"><?php echo l('Einstellungen')?></a></li>
 
     </ul>
 
@@ -51,25 +51,25 @@ $linksclickable = ($_COOKIE['tmailprefsmakeclickable'] == false) ? "true" : $_CO
 $transformsmilies = ($_COOKIE['tmailprefsgraphsmil'] == false) ? "true" : $_COOKIE['tmailprefsgraphsmil'];
 
 echo <<<END
-    <div id="settings" title="Einstellungen" class="panel">
+    <div id="settings" title="{$l('Einstellungen')}" class="panel">
         
 
-        <h2>Oberfl&auml;che</h2>
+        <h2>{$l('Oberfl&auml;che')}</h2>
         <fieldset>
         <div class="row">
-                <label>Links anklickbar?</label>
+                <label>{$l('Links anklickbar?')}</label>
                 <div class="toggle" onclick="SetCookie('tmailprefsmakeclickable',this.getAttribute('toggled'));"  toggled="$linksclickable"><span class="thumb"></span><span class="toggleOn">ON</span><span class="toggleOff">OFF</span></div>
             </div>
         <div class="row">
-                <label>Graphische Smilies?</label>
+                <label>{$l('Graphische Smilies?')}</label>
                 <div class="toggle" onclick="SetCookie('tmailprefsgraphsmil',this.getAttribute('toggled'));"  toggled="$transformsmilies"><span class="thumb"></span><span class="toggleOn">ON</span><span class="toggleOff">OFF</span></div>
             </div>
        <div class="row">
-                <label>HTML anzeigen?</label>
+                <label>{$l('HTML anzeigen?')}</label>
                 <div class="toggle" onclick="SetCookie('tmailprefshowhtml',this.getAttribute('toggled'));"  toggled="$showhtml"><span class="thumb"></span><span class="toggleOn">ON</span><span class="toggleOff">OFF</span></div>
             </div>
         <div class="row">
-                <label>Gel&ouml;schte anzeigen?</label>
+                <label>{$l('Gel&ouml;schte anzeigen?')}</label>
                 <div class="toggle" onclick="SetCookie('tmailprefshowdel',this.getAttribute('toggled'));"  toggled="$showdeleted"><span class="thumb"></span><span class="toggleOn">ON</span><span class="toggleOff">OFF</span></div>
             </div>
         </fieldset>
@@ -80,17 +80,17 @@ END
     
     <form id="sendmail" class="dialog" action="sendmail.php" method="post">
         <fieldset>
-            <h1 id="newmailtitle">Neue eMail</h1>
-            <a class="button leftButton" type="cancel">Cancel</a>
-            <a class="button blueButton" type="submit">Senden</a>
+            <h1 id="newmailtitle"><?php echo l('Neue eMail')?></h1>
+            <a class="button leftButton" type="cancel"><?php echo l('Cancel')?></a>
+            <a class="button blueButton" type="submit"><?php echo l('Senden')?></a>
             
-            <label>An:</label>
+            <label><?php echo l('An')?>:</label>
             <input style="width:91%;padding-left:60px;padding-right:0px;" type="text" id="smto" name="to"/>
-            <label>CC:</label>
+            <label><?php echo l('CC')?>:</label>
             <input style="width:91%;padding-left:60px;padding-right:0px;" type="text" id="smcc" name="cc"/>
-            <label>Betreff:</label>
+            <label><?php echo l('Betreff')?>:</label>
             <input style="width:91%;padding-left:60px;padding-right:0px;" type="text" id="smsubj" name="subj"/>
-            <label>Text:</label>
+            <label><?php echo l('Text')?>:</label>
             <textarea name="textbody" style="width:94%;padding-top:25px;padding-left:5px;margin-left:10px;margin-right:0px;padding-right:0px;" id="smtext"  rows="20"></textarea>
         </fieldset>
     </form>

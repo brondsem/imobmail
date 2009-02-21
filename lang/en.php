@@ -16,7 +16,41 @@ function l($key) {
         'eingeloggt bleiben' => 'Remember me',
         
         # intro
+        'Nachrichten abrufen' => 'Read Email',
+        'Nachricht verfassen' => 'Compose Email',
         'Adressbuch' => 'Address Book',
+        'Einstellungen' => 'Settings',
+        
+        # settings
+        'Oberfl&auml;che' => 'Presentation',
+        'Links anklickbar?' => 'Clickable links?',
+        'Graphische Smilies?' => 'Graphical smilies?',
+        'HTML anzeigen?' => 'Show HTML?',
+        'Gel&ouml;schte anzeigen?' => 'Show deleted?',
+        
+        # compose
+        'Neue eMail' => 'New Email',
+        'An' => 'To',
+        'Betreff' => 'Subject',
+        'Mail wurde verschickt!' => 'Mail has been sent!',
+        
+        # address book
+        'Adressen' => 'Addresses',
+        'Adresse' => 'Address',
+        'Arbeit' => 'Work',
+        'Privat' => 'Personal',
+        'Mobil' => 'Cell',
+        'Telefon' => 'Phone',
+        'eMail' => 'Email',
+        
+        # read
+        'Ordner' => 'Folders',
+        'Posteingang' => 'Inbox',
+        '25 vorige Nachrichten laden...' => 'Previous 25...',
+        '25 weitere Nachrichten laden...' => 'Next 25...',
+        'Von' => 'From',
+        'von' => 'of',
+        'Anh&auml;nge' => 'Attachments',
     );
     if (isset($translation[$key])) {
         return $translation[$key];

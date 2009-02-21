@@ -337,8 +337,8 @@ if (!$showhtmlbody) {
 
 	echo <<<END
 <li id="subjli" style="$hidesub padding-top:5px;padding-bottom:5px;font-size:15px;text-align:center;">$subject</li>
-<li style="$delstyle padding-top:4px;padding-bottom:4px;font-size:14px;">Von: $from</li>
-<li style="$delstyle padding-top:3px;padding-bottom:3px;font-size:13px;font-weight:normal;">An: $to</li>
+<li style="$delstyle padding-top:4px;padding-bottom:4px;font-size:14px;">{$l('Von')}: $from</li>
+<li style="$delstyle padding-top:3px;padding-bottom:3px;font-size:13px;font-weight:normal;">{$l('An')}: $to</li>
 END;
 
 	$cc = utf8_encode(_decodeHeader(make_email_string($mailHeader->cc)));
@@ -347,7 +347,7 @@ END;
 
 
 		echo <<<END
-<li style="padding-top:3px;padding-bottom:3px;font-size:13px;font-weight:normal;">CC: $cc</li>
+<li style="padding-top:3px;padding-bottom:3px;font-size:13px;font-weight:normal;">{$l('CC')}: $cc</li>
 END;
 
 }
@@ -416,7 +416,7 @@ if ($contentParts >= 2) {
 if (!$showhtmlbody) {
 
 	if (sizeof($selectBoxDisplay) > 0) {
-		echo "<li style=\"padding-top:7px;padding-bottom:5px;font-size:15px;border-top:2px solid;\">Anh&auml;nge:";
+		echo "<li style=\"padding-top:7px;padding-bottom:5px;font-size:15px;border-top:2px solid;\">" . l('Anh&auml;nge') . ":";
 		for ($j=0;$j<sizeof($selectBoxDisplay);$j++) {
 			echo "\n<div style=\"padding-left:22px;padding-top:3px;padding-bottom:3px;color:#194fdb;\"><a href=\"getatt.php?acc=".$accnr."&folder=".$imapfolder."&filename=".$selectBoxDisplay[$j]."&msgid=".$msgno."&att=".$j."\" target=\"_blank\">". $selectBoxDisplay[$j]    ."</a></div>";
 		}
@@ -452,7 +452,7 @@ if (!$showhtmlbody) {
 	if ($prevmsg) {
 
 		echo <<<END
-<a class="button" id="msgprev" onclick="document.getElementById('pageTitle').innerHTML = '$prevmsg von $MC->Nmsgs';" href="details.php?noul&acc=$accnr&folder=$imapfolder&msgid=$prevmsg" target="_replaceother" replacet = "msg" style="position:fixed;right:45px;width:18px;"><img src="./iui/down.png" style="position:absolute;top:8px;"></a>
+<a class="button" id="msgprev" onclick="document.getElementById('pageTitle').innerHTML = '$prevmsg {$l('von')} $MC->Nmsgs';" href="details.php?noul&acc=$accnr&folder=$imapfolder&msgid=$prevmsg" target="_replaceother" replacet = "msg" style="position:fixed;right:45px;width:18px;"><img src="./iui/down.png" style="position:absolute;top:8px;"></a>
 END;
 
 } else {

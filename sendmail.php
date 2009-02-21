@@ -114,5 +114,5 @@ $smtp_host_conn->disconnect();
 			    ?>
     
     <ul id="done" title="Mail" selected="true">
-        <li>Mail wurde verschickt!</li>
+        <li><?php echo l('Mail wurde verschickt!')?></li>
         </ul>
