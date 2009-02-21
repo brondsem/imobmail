@@ -39,6 +39,7 @@ or die("can't connect: " . imap_last_error());
 
 $list = imap_lsub($mbox, $serverarg, "*");
 if (is_array($list)) {
+    sort($list);
 	foreach ($list as $val) {
 		$utdec = imap_utf7_decode($val);
         $utdec = preg_replace("/{(.*)}/","",$utdec);

@@ -194,6 +194,7 @@ foreach(array_reverse($msgsh) as $headrs) {
 
 	$subj = str_replace("'","",$subj);
 	$subj = str_replace("\"","",$subj);
+    # TODO: strip <email@addr.ess>, htmlspecialchars
 
 	print "<li name=\"msgli\" id=\"msg".utf8_encode($headrs->msgno)."\" style=\" ".$delstyle.$seenstr.$colorstr."\"><div name=\"msglistentry\" style=\"position:absolute;left:8px;top:16px;display:none;z-index:999\" ><a href=\"delmsg.php?acc=".$accnr."&folder=".$imapfolder."&msgid=".$headrs->msgno."\" type = \"delmsg\"><img src=\"./iui/stop.png\"  ></a></div><a onClick=\"JavaScript:document.getElementById('msg".$headrs->msgno."').style.color='black';document.getElementById('rb').style.display='none';showDelIcons(false);showdelicons=false;\" href=\"details.php?acc=".$accnr."&folder=".$imapfolder."&msgid=".$headrs->msgno."\" style=\"padding-left:25px;padding-right:45px;".$attpadd."\">".imap_utf8_workaround(_decodeHeader($subj))."<div align=\"right\" style=\"color:#194fdb;font-size:14px;font-weight:bold;position:absolute;right:10px;top:3px;\">".$datestr."</div><div style=\"font-size:11px;position:absolute;right:10px;bottom:3px;\">".$msize."</div>
 	<div style=\"font-weight:normal;font-size:14px;padding-right:25px;\">".imap_utf8_workaround(_decodeHeader($headrs->subject))."</div>
