@@ -16,6 +16,11 @@
 
 */
 
+# http://bugs.php.net/bug.php?id=44098
+function imap_utf8_workaround($string) {
+  return iconv_mime_decode($string,0,"UTF-8");
+}
+
 include('sessioncheck.php');
 include('config.php');
 
@@ -47,7 +52,7 @@ $mailHeader = @imap_headerinfo($mbox, $msgno);
 $from = make_email_string($mailHeader->from);
 //$from = str_replace("<","&lt;",$from);
 $to = utf8_encode(make_email_string($mailHeader->to));
-$subject = strip_tags(imap_utf8(_decodeHeader($mailHeader->subject)));
+$subject = strip_tags(imap_utf8_workaround(_decodeHeader($mailHeader->subject)));
 
 
 $date = date("D, d.m.Y, H:i",strtotime($mailHeader->MailDate));
@@ -156,11 +161,11 @@ function get_part($stream, $msg_number, $mime_type, $structure = false,$part_num
 			} else if($structure->encoding == 4) {
 				return quoted_printable_decode($text);
 			} else if($structure->encoding == 1) {
-				return imap_utf8($text);
+				return imap_utf8_workaround($text);
 			} else if($structure->encoding == 0) {
 				return $text;
 			} else {
-				return imap_utf8($text);
+				return imap_utf8_workaround($text);
 			}
 		}
 
@@ -384,10 +389,10 @@ if ($contentParts >= 2) {
 	for ($k=0;$k<sizeof($att);$k++) {
 		/*if ($att[$k]->parameters[0]->value == "us-ascii" || $att[$k]->parameters[0]->value    == "US-ASCII") {
 		if ($att[$k]->parameters[1]->value != "") {
-		$selectBoxDisplay[$k] = imap_utf8($att[$k]->parameters[1]->value);
+		$selectBoxDisplay[$k] = imap_utf8_workaround($att[$k]->parameters[1]->value);
 		}
 		} elseif ($att[$k]->parameters[0]->value != "iso-8859-1" &&    $att[$k]->parameters[0]->value != "ISO-8859-1") {
-		$selectBoxDisplay[$k] = imap_utf8($att[$k]->parameters[0]->value);
+		$selectBoxDisplay[$k] = imap_utf8_workaround($att[$k]->parameters[0]->value);
 		}*/
 		$p = $att[$k];
 		if (count($p->dparameters)>0){
