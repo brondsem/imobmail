@@ -47,8 +47,7 @@ if (is_array($list)) {
         $utdec = preg_replace("/INBOX/","",$utdec,1);
         $utdec = preg_replace("/\./","",$utdec,1);
 		imap_reopen($mbox, $val);
-
-		$check = imap_status($mbox,$val,SA_UNSEEN);
+		$check = imap_status($mbox,$val,SA_UNSEEN|SA_MESSAGES);
 		$colorstr = "";
 		$dotcode = "";
 		if ($check->unseen > 0) {
@@ -61,10 +60,7 @@ if (is_array($list)) {
 		$mboxname = substr($val,strpos($val,'}')+1,strlen($val));
 
 		echo "<li style=\"".$dotcode."\"><a href=\"folderlist.php?acc=".$accnr."&folder=".imap_utf7_decode($mboxname)."&offset=0\"  style=\"padding-left:25px;".$colorstr."\" type=\"folderlist\">".$utdec;
-
-		if ($hdr = imap_check($mbox)) { $nummsg = $hdr->Nmsgs; } else { $nummsg = 0;}
-
-		echo "<span style=\"padding-left:8px;font-size:11px;\">(".$nummsg.")</span>";
+		echo "<span style=\"padding-left:8px;font-size:11px;\">(".$check->messages.")</span>";
 
 
 		if ($check->unseen > 0) {
@@ -78,7 +74,6 @@ if (is_array($list)) {
 } else {
 	echo "<li ><a href=\"folderlist.php?acc=".$accnr."&folder=INBOX&offset=0\" style=\"padding-left:25px;\">".l('Posteingang')."</a></li>";
 }
-
 imap_close($mbox);
 			  ?>
 			  
