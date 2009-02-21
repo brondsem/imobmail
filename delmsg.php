@@ -32,6 +32,6 @@ $msgno = $_GET["msgid"];
 $mbox = imap_open($serverarg.$imapfolder, $serveruser, $serverpw)
 or die("can't connect: " . imap_last_error());
 
-imap_setflag_full($mbox, $msgno, "\\Deleted");
+imap_setflag_full($mbox, $msgno, ($_GET['flag'] == 'Flagged' ? "\\Flagged" : "\\Deleted"));
 imap_close($mbox);
 ?>

@@ -243,28 +243,38 @@ var showdelicons = false;
 				scrollTo(1,1);
 				history.back();
 			}
-			else if (link == $("delmsg"))
-			{
-				var box=window.confirm("Diese Nachricht wirklich entfernen?")
+            else if (link == $("delmsg"))
+            {
+                var box=window.confirm("Diese Nachricht wirklich entfernen?")
 
-				if (box == false) { event.preventDefault();   return false; }
+                if (box == false) { event.preventDefault();   return false; }
 
-				iof = $('delmsg').href.indexOf('msgid=');
-				msgnr = $('delmsg').href.substr(iof+6,$('delmsg').href.length-1);
-
-
-
-				var req = new XMLHttpRequest();
-				req.open("GET", $('delmsg').href, true);
-				req.send(null);
+                iof = $('delmsg').href.indexOf('msgid=');
+                msgnr = $('delmsg').href.substr(iof+6,$('delmsg').href.length-1);
 
 
 
-				$('msg'+msgnr).style.display = "none";
+                var req = new XMLHttpRequest();
+                req.open("GET", $('delmsg').href, true);
+                req.send(null);
 
-				history.back();
 
-			}
+
+                $('msg'+msgnr).style.display = "none";
+
+                history.back();
+
+            }
+            else if (link == $("starmsg"))
+            {
+                iof = $('delmsg').href.indexOf('msgid=');
+                msgnr = $('delmsg').href.substr(iof+6,$('delmsg').href.length-1);
+
+                var req = new XMLHttpRequest();
+                req.open("POST", $('starmsg').href, true);
+                req.send(null);
+
+            }
 
 			else if (link.getAttribute("type") == "delmsg")
 			{
