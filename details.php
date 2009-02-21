@@ -482,14 +482,23 @@ $ccadr = @get_email_adresses(array_merge($mailHeader->to,$mailHeader->cc));
 
 if ($mailformat == "html") $iframeid = "htmliframe".$imapfolder.$msgno; else $iframeid = "";
 
+
+if ($mailHeader->Flagged == "F") {
+    $starico = "starico.png";
+} else {
+    $starico = "starnoico.png";
+}
 echo <<<END
 <li style=" background: url(./iui/toolbar.png) #6d84a2 repeat-x; margin-top:20px;min-height:32px;height:32px;top:324px:">
 <table width="100%" align="center">
-<td width="20%" align="center"><a href="delmsg.php?flag=Flagged&acc=$accnr&folder=$imapfolder&msgid=$msgno" id="starmsg"><img src="./iui/starnoico.png"></a></td>
+<tr>
+<td width="20%" align="center"><a href="delmsg.php?flag=Flagged&acc=$accnr&folder=$imapfolder&msgid=$msgno" id="starmsg"><img src="./iui/$starico"></a></td>
 <td width="20%" align="center"><a onclick="sendReply('$iframeid','$cleansubject','$fromadr');" href="#sendmail"><img src="./iui/replyico.png"></a></td>
 <td width="20%" align="center"><a onclick="sendReply('$iframeid','$cleansubject','$fromadr','$ccadr');" href="#sendmail"><img src="./iui/replyallico.png"></a></td>
 <td width="20%" align="center"><a onclick="sendFwd('$iframeid','$cleansubject','$fromadr');" href="#sendmail"><img src="./iui/fwdico.png"></a></td>
-<td width="20%" align="center"><a href="delmsg.php?acc=$accnr&folder=$imapfolder&msgid=$msgno" id = "delmsg"><img src="./iui/delico.png"></a></td></table>
+<td width="20%" align="center"><a href="delmsg.php?acc=$accnr&folder=$imapfolder&msgid=$msgno" id = "delmsg"><img src="./iui/delico.png"></a></td>
+</tr>
+</table>
 </li>
 END;
 }
