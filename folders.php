@@ -40,7 +40,9 @@ or die("can't connect: " . imap_last_error());
 $list = imap_lsub($mbox, $serverarg, "*");
 if (is_array($list)) {
     sort($list);
+    $folder_output = array('read'=>'', 'unread'=>'');
 	foreach ($list as $val) {
+        $folder_type = "read";
 		$utdec = imap_utf7_decode($val);
         $utdec = preg_replace("/{(.*)}/","",$utdec);
         $utdec = preg_replace("/\//","",$utdec,1);
@@ -51,6 +53,7 @@ if (is_array($list)) {
 		$colorstr = "";
 		$dotcode = "";
 		if ($check->unseen > 0) {
+            if ($FOLDERS_UNREAD_FIRST) $folder_type = 'unread';
 			$dotcode = " background-image: url(./iui/dot.png);background-repeat:no-repeat;background-position:2px 12px;";
 			$colorstr = "color:#194fdb;font-weight:bold;";
 		}
@@ -59,18 +62,20 @@ if (is_array($list)) {
 
 		$mboxname = substr($val,strpos($val,'}')+1,strlen($val));
 
-		echo "<li style=\"".$dotcode."\"><a href=\"folderlist.php?acc=".$accnr."&folder=".imap_utf7_decode($mboxname)."&offset=0\"  style=\"padding-left:25px;".$colorstr."\" type=\"folderlist\">".$utdec;
-		echo "<span style=\"padding-left:8px;font-size:11px;\">(".$check->messages.")</span>";
+		$folder_output[$folder_type] .= "<li style=\"".$dotcode."\"><a href=\"folderlist.php?acc=".$accnr."&folder=".imap_utf7_decode($mboxname)."&offset=0\"  style=\"padding-left:25px;".$colorstr."\" type=\"folderlist\">".$utdec;
+		$folder_output[$folder_type] .= "<span style=\"padding-left:8px;font-size:11px;\">(".$check->messages.")</span>";
 
 
 		if ($check->unseen > 0) {
-			echo "<span style=\"padding-left:8px;font-size:18px;\">(".$check->unseen.")</span>";
+			$folder_output[$folder_type] .= "<span style=\"padding-left:8px;font-size:18px;\">(".$check->unseen.")</span>";
 		}
 
 
 		echo "</a></li>\n";
 
 	}
+    echo $folder_output['unread'];
+    echo $folder_output['read'];
 } else {
 	echo "<li ><a href=\"folderlist.php?acc=".$accnr."&folder=INBOX&offset=0\" style=\"padding-left:25px;\">".l('Posteingang')."</a></li>";
 }
