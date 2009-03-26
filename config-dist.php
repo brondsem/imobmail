@@ -99,4 +99,10 @@ $SMTP_SENDERADDRESS = "john@doe.foe";			// Ihre eMail-Adresse (Absender)
     Defaults to 'de'
 */
 // $LANG = 'en'
+
+
+/*
+    How long to set a cookie, when someone chooses to be rememberd on the login screen
+*/
+$REMEMBER_ME_HOURS=24;
 ?>

@@ -61,8 +61,8 @@ if ($un == "" || $pw == "") {
 if ($un == $USERNAME && $pw == $PASSWORD) {
 	if ($_POST['keepli'] == '1') {
 
-		setcookie("touchmailuser", $USERNAME, time()+3600*24);
-		setcookie("touchmailpw", md5($PASSWORD), time()+3600*24);
+		setcookie("touchmailuser", $USERNAME, time()+3600*$REMEMBER_ME_HOURS);
+		setcookie("touchmailpw", md5($PASSWORD), time()+3600*$REMEMBER_ME_HOURS);
 	}
 	$_SESSION['user'] = $USERNAME;
 	$_SESSION['passwd'] = md5($PASSWORD);
